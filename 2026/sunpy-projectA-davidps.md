@@ -12,7 +12,7 @@
 
 ## Contributor Information
 * **Name:** David PS
-* **Time-zone:** UTC
+* **Time-zone:** UTC/BST
 * **Matrix/slack/IRC Handle:** davidps
 * **Github/forge username:** dpshelio
 * **Blog:** https://david.ps/
