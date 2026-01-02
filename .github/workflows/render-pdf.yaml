@@ -31,7 +31,7 @@ jobs:
         id: artifact
         with:
           name: result.pdf
-          path: 2026/output/result.pdf
+          path: output/result.pdf
       - name: Comment PR
         uses: thollander/actions-comment-pull-request@v3
         id: message-pdf
