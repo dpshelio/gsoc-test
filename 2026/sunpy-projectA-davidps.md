@@ -16,7 +16,7 @@
 * **Matrix/slack/IRC Handle:** davidps
 * **Github/forge username:** dpshelio
 * **Blog:** https://david.ps/
-* **Blog RSS feed:** https://david.ps/feed.rss
+* **Blog RSS feed:** https://david.ps/feed.xml
 * **PR link(s):**
   * https://github.com/sunpy/sunpy/pull/8087
   * https://github.com/sunpy/sunpy/pull/8087
