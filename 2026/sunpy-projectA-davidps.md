@@ -19,6 +19,7 @@
 * **Blog RSS feed:** https://david.ps/feed.rss
 * **PR link(s):**
   * https://github.com/sunpy/sunpy/pull/8087
+  * https://github.com/sunpy/sunpy/pull/8087
   * .
 
 ### Background
