@@ -1,29 +1,28 @@
-name: Update issue
-# Note that syntax to refer to this issue is: {{ this_issue }} and for a
-# previous one: {{ (this_issue | int ) - 1 }}
+name: Label issues
 on:
   issues:
     types:
-      - created
+      - reopened
       - opened
-
 jobs:
-  reference_issues:
+  label_issues:
     runs-on: ubuntu-latest
     permissions:
       issues: write
     steps:
-      - uses: actions/setup-python@v6
+      - name: checkout
+        uses: actions/checkout@v6
         with:
-          python-version: '3.13'
-      - name: Install dependencies
+          fetch-depth: 2
+      - name: which project?
         run: |
-          pip install jinja-cli
-      - name: basic Shell
-        # The replacements with sed are used to avoid jinja complaining of undefined variables when the issue contains templated gh actions examples
-        run: |
-           gh issue view ${{ github.event.issue.html_url }} --json body -t '{{.body}}' >> text_body
-           sed -e 's/\${/\$kk/g' text_body | jinja -D "this_issue" "${{ github.event.issue.number }}" -D "this_org" "${{ github.repository_owner }}" | sed -e 's/\$kk/\${/g' >> text_body_out
-           gh issue edit ${{ github.event.issue.html_url }} --body-file text_body_out
+          changed_files=$(git diff --name-only -r HEAD^1 HEAD | grep 2026 | awk -F/ '{print $2}' | head -n1)
+          labels=$(gh label list --json 'name' | jq ".[].name")
+          echo ${labels} | grep ${changed_files} >> /dev/null
+          if [[ $? -eq 0 ]]; then
+            gh issue edit "$NUMBER" --add-label ${changed_files}
+          fi
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+          NUMBER: ${{ github.event.issue.number }}
