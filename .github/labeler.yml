@@ -4,18 +4,18 @@ astropy:
 juliaastro:
 - changed-files:
   - any-glob-to-any-file: juliaastro/**
-lincc-fw
+lincc-fw:
 - changed-files:
   - any-glob-to-any-file: lincc-fw/**
-radis
+radis:
 - changed-files:
   - any-glob-to-any-file: radis/**
-reltrans
+reltrans:
 - changed-files:
   - any-glob-to-any-file: reltrans/**
-stingray
+stingray:
 - changed-files:
   - any-glob-to-any-file: stingray/**
-sunpy
+sunpy:
 - changed-files:
   - any-glob-to-any-file: sunpy/**
