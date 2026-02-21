@@ -1,27 +1,12 @@
-name: Label issues
+name: "Pull Request Labeler"
 on:
-  pull_request:
-    branches:
-      - main
+- pull_request_target
+
 jobs:
-  label_issues:
-    runs-on: ubuntu-latest
+  labeler:
     permissions:
-      issues: write
+      contents: read
+      pull-requests: write
+    runs-on: ubuntu-latest
     steps:
-      - name: checkout
-        uses: actions/checkout@v6
-        with:
-          fetch-depth: 2
-      - name: which project?
-        run: |
-          changed_files=$(git diff --name-only -r HEAD^1 HEAD | grep 2026 | awk -F/ '{print $2}' | head -n1)
-          labels=$(gh label list --json 'name' | jq ".[].name")
-          echo ${labels} | grep ${changed_files} >> /dev/null
-          if [[ $? -eq 0 ]]; then
-            gh issue edit "$NUMBER" --add-label ${changed_files}
-          fi
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GH_REPO: ${{ github.repository }}
-          NUMBER: ${{ github.event.issue.number }}
+    - uses: actions/labeler@v6
