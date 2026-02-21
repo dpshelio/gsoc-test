@@ -18,4 +18,4 @@ stingray:
   - any-glob-to-any-file: stingray/**
 sunpy:
 - changed-files:
-  - any-glob-to-any-file: sunpy/**
+  - any-glob-to-any-file: */sunpy/**
